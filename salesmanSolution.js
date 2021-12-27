@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const bodyParser = require("body-parser");
-
+const salesman = require("salesman.js");
 const res = require("express/lib/response");
 const express = require("express"),
   app = express(),
@@ -31,6 +31,16 @@ const getCoordinates = () => {
 //   console.log(response.data.results[0].geometry.location);
 // });
 
-const solver = () => {};
+const solver = () => {
+  var points = [
+    new salesman.Point(2.35, 3.12),
+    new salesman.Point(2.39, 3.19),
+    new salesman.Point(2.34, 3.11),
+    new salesman.Point(2.35, 3.05),
+  ];
+  var solution = salesman.solve(points);
+  var ordered_points = solution.map((i) => points[i]);
+  console.log(solution);
+};
 
 solver();
